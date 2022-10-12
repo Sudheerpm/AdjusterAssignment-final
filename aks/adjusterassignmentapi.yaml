@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adjusterassignmentapi-deployment
+  labels:
+    app: adjusterassignmentapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adjusterassignmentapi
+  template:
+    metadata:
+      labels:
+        app: adjusterassignmentapi
+    spec:
+      containers:
+        - name: adjusterassignmentapi
+          image: adjusterassignmentacr.azurecr.io/adjusterassignmentapi:v1
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: mongo-configmap
+                    key: connection_string
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adjusterassignmentapi-service
+spec:  
+  selector:
+    app: adjusterassignmentapi
+  ports:
+    - protocol: TCP
+      port: 80

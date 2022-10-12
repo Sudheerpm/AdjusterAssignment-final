@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adjusterassignmentclient-deployment
+  labels:
+    app: adjusterassignmentclient
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: adjusterassignmentclient
+  template:
+    metadata:
+      labels:
+        app: adjusterassignmentclient
+    spec:
+      containers:
+        - name: adjusterassignmentclient
+          image: adjusterassignment.azurecr.io/adjusterassignmentclient:v1
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: AdjusterAssignmentAPIUrl
+              valueFrom:
+                  configMapKeyRef:
+                    name: adjusterassignmentapi-configmap
+                    key: adjusterassignmentapi_url
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adjusterassignmentclient-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: adjusterassignmentclient
+  ports:
+    - protocol: TCP
+      port: 80           
