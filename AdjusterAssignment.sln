@@ -9,6 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdjusterAssignment.API", "A
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FC33DA20-A9C5-4E63-A475-FE92BF2DB77E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aks", "aks", "{480B23AB-CFA8-4B13-990A-162342CA9627}"
+	ProjectSection(SolutionItems) = preProject
+		..\aks\adjusterassignmentapi-configmap.yaml = ..\aks\adjusterassignmentapi-configmap.yaml
+		..\aks\adjusterassignmentapi.yaml = ..\aks\adjusterassignmentapi.yaml
+		..\aks\adjusterassignmentautoscale.yaml = ..\aks\adjusterassignmentautoscale.yaml
+		..\aks\adjusterassignmentclient.yaml = ..\aks\adjusterassignmentclient.yaml
+		..\aks\commands.txt = ..\aks\commands.txt
+		..\aks\mongo-configmap.yaml = ..\aks\mongo-configmap.yaml
+		..\aks\mongo-secret.yaml = ..\aks\mongo-secret.yaml
+		..\aks\mongo.yaml = ..\aks\mongo.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
