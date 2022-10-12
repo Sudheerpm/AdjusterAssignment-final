@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  adjusterassignment.api:
+    image: ${DOCKER_REGISTRY-}adjusterassignmentapi
+    build:
+      context: .
+      dockerfile: AdjusterAssignment.API/Dockerfile
+
+  adjusterassignment.client:
+    image: ${DOCKER_REGISTRY-}adjusterassignmentclient
+    build:
+      context: .
+      dockerfile: AdjusterAssignment.Client/Dockerfile
+
+  adjusterassignment.db:
+    image: mongo

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AdjusterAssignment.Client.Models.AdjAssignment>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Products - Updated V3 from AKS Deployment - last run</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdjusterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdjuterId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClaimGroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClaimId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdjusterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdjuterId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClaimGroupId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClaimId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

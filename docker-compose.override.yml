@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  adjusterassignment.api:
+    container_name: adjusterassignmentapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://adjusterassignmentdb:27017"
+    depends_on:
+      - adjusterassignment.db
+    ports:
+      - "8000:80"
+
+  adjusterassignment.client:
+    container_name: adjusterassignmentclient
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development 
+      - "AdjusterAssignmentAPIUrl=http://adjusterassignmentapi"
+    depends_on:
+      - adjusterassignment.db
+      - adjusterassignment.api
+    ports:
+      - "8001:80"
+
+  adjusterassignment.db:
+    container_name: adjusterassignmentdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
