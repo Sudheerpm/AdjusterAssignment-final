@@ -29,3 +29,12 @@ services:
       - "27017:27017"
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
+  adjustermatching.api:
+    container_name: adjustermatchingapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "AdjusterAssignmentAPIUrl=http://adjusterassignmentapi"
+    depends_on:
+      - adjusterassignment.api
+    ports:
+      - "8002:80"

@@ -15,3 +15,9 @@ services:
 
   adjusterassignment.db:
     image: mongo
+  adjustermatching.api:
+    image: ${DOCKER_REGISTRY-}adjustermatchingapi
+    build:
+      context: .
+      dockerfile: AdjusterMatching.API/Dockerfile
+

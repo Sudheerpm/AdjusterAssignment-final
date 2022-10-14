@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adjustermatchingapi-deployment
+  labels:
+    app: adjustermatchingapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adjustermatchingapi
+  template:
+    metadata:
+      labels:
+        app: adjustermatchingapi
+    spec:
+      containers:
+        - name: adjustermatchingapi
+          image: adjusterassignmentacr.azurecr.io/adjustermatchingapi:v1
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adjustermatchingapi-service
+spec:  
+  type: LoadBalancer
+  selector:
+    app: adjustermatchingapi
+  ports:
+    - protocol: TCP
+      port: 80
