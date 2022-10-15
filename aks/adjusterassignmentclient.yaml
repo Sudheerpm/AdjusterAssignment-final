@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: adjusterassignmentclient
-          image: adjusterassignment.azurecr.io/adjusterassignmentclient:v1
+          image: adjusterassignmentacr.azurecr.io/adjusterassignmentclient:v1
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 80
