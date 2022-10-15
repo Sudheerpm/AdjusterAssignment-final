@@ -17,12 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aks", "aks", "{480B23AB-CFA
 		..\aks\adjusterassignmentclient.yaml = ..\aks\adjusterassignmentclient.yaml
 		aks\adjustermatchingapi.yaml = aks\adjustermatchingapi.yaml
 		..\aks\commands.txt = ..\aks\commands.txt
+		aks\commands.txt = aks\commands.txt
 		..\aks\mongo-configmap.yaml = ..\aks\mongo-configmap.yaml
 		..\aks\mongo-secret.yaml = ..\aks\mongo-secret.yaml
 		..\aks\mongo.yaml = ..\aks\mongo.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdjusterMatching.API", "AdjusterMatching.API\AdjusterMatching.API.csproj", "{B9EF473D-A81E-45BF-989B-D84DB15CE218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdjusterMatching.API", "AdjusterMatching.API\AdjusterMatching.API.csproj", "{B9EF473D-A81E-45BF-989B-D84DB15CE218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,49 +35,52 @@ Create a resource group
 az group create --name myResourceGroup --location westeurope
 --
 Create an Azure Container Registry
-az acr create --resource-group myResourceGroup --name shoppingacr --sku Basic
+az acr create --resource-group myResourceGroup --name adjusterassignmentacr --sku Basic
 --
 Enable Admin Account for ACR Pull
-az acr update -n shoppingacr --admin-enabled true
+az acr update -n adjusterassignmentacr --admin-enabled true
 --
 Log in to the container registry
-az acr login --name shoppingacr
+az acr login --name adjusterassignmentacr
 Login Succeeded
 --
 Tag a container image
 
 get the login server address
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
-shoppingacr.azurecr.io
+adjusterassignmentacr.azurecr.io
 --
 Tag your images
 
-docker tag shoppingapi:latest shoppingacr.azurecr.io/shoppingapi:v1
-docker tag shoppingclient:latest shoppingacr.azurecr.io/shoppingclient:v1
+docker tag adjusterassignmentapi:latest adjusterassignmentacr.azurecr.io/adjusterassignmentapi:v1
+docker tag adjustermatchingapi:latest adjusterassignmentacr.azurecr.io/adjustermatchingapi:v1
+docker tag adjusterassignmentclient:latest adjusterassignmentacr.azurecr.io/adjusterassignmentclient:v1
 
 Check
 docker images
 --
 Push images to registry
 
-docker push shoppingacr.azurecr.io/shoppingapi:v1
-docker push shoppingacr.azurecr.io/shoppingclient:v1
+docker push adjusterassignmentacr.azurecr.io/adjusterassignmentapi:v1
+docker push adjusterassignmentacr.azurecr.io/adjustermatchingapi:v1
+docker push adjusterassignmentacr.azurecr.io/adjusterassignmentclient:v1
 --
 List images in registry
-az acr repository list --name shoppingacr --output table
+az acr repository list --name adjusterassignmentacr --output table
 
 Result
-shoppingapi
-shoppingclient
+adjusterassignmentapi
+adjustermatchingapi
+adjusterassignmentclient
 --
 See tags
-az acr repository show-tags --name shoppingacr --repository shoppingclient --output table
+az acr repository show-tags --name adjusterassignmentacr --repository adjusterassignmentclient --output table
 
 Result
 v1
 --
 Create AKS cluster with attaching ACR
-az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr shoppingacr
+az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr adjusterassignmentacr
 
 --
 Install the Kubernetes CLI
@@ -97,10 +100,38 @@ kubectl config current-context
 kubectl config use-context gcpcluster-k8s-1
 	Switched to context "gcpcluster-k8s-1"
 --
-Deploy microservices to AKS
+Create pull secret for ACR container
+------------------------------------------
+Login server name --> az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
 
-kubectl apply -f .\aks\
---
+Syntax --> kubectl create secret docker-registry registry-credentials —-docker-server=REGISTRY_FQDN —-docker-username=USERNAME 
+—-docker-password=PASSWORD —-docker-email=EMAIL
+
+Command --> kubectl create secret docker-registry acr-secret —-docker-server=adjusterassignmentacr.azurecr.io —-docker-username=adjusterassignmentacr —-docker-password=66Ha2pWLV0GOeT91XPs5f0qRjfFhBMe+ —-docker-email=sudheepm@in.ibm.com
+kubectl get secret
+
+(14) Deploy the API 
+-----------------------
+kubectl apply -f .\aks
+
+
+kubectl get all
+
+kubectl get pods
+
+kubectl get nodes
+
+kodectl describe <podno> ---- trouble shoot.
+
+
+
+kubectl delete -f .\aks
+
+(15) When the deployment completes, you can access the Kubernetes Web UI with a local proxy, using an ssh tunnel.
+
+Assign the cluster role binding - kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+
+Command to start proxy - az aks browse --resource-group myResourceGroup --name myAKSCluster
 Clean All AKS and Azure Resources
 
 az group delete --name myResourceGroup --yes --no-wait
