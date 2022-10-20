@@ -107,7 +107,7 @@ Login server name --> az acr list --resource-group myResourceGroup --query "[].{
 Syntax --> kubectl create secret docker-registry registry-credentials —-docker-server=REGISTRY_FQDN —-docker-username=USERNAME 
 —-docker-password=PASSWORD —-docker-email=EMAIL
 
-Command --> kubectl create secret docker-registry acr-secret —-docker-server=adjusterassignmentacr.azurecr.io —-docker-username=adjusterassignmentacr —-docker-password=66Ha2pWLV0GOeT91XPs5f0qRjfFhBMe+ —-docker-email=sudheepm@in.ibm.com
+Command --> kubectl create secret docker-registry acr-secret —-docker-server=adjusterassignmentacr.azurecr.io —-docker-username=adjusterassignmentacr —-docker-password=K65F4InAwDzJjanliB8CBAQsa=u8UWOm —-docker-email=sudheepm@in.ibm.com
 kubectl get secret
 
 (14) Deploy the API 
@@ -116,6 +116,12 @@ kubectl apply -f .\aks
 
 
 kubectl get all
+
+kubectl get pvc
+
+kubectl get pv
+
+kubectl get svc
 
 kubectl get pods
 
