@@ -129,7 +129,9 @@ kubectl get nodes
 
 kodectl describe <podno> ---- trouble shoot.
 
+kubectl exec -it mongo-deployment-55dd9c57c8-xtw6g -- /bin/bash
 
+df
 
 kubectl delete -f .\aks
 

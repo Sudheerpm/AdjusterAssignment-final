@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aks", "aks", "{480B23AB-CFA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdjusterMatching.API", "AdjusterMatching.API\AdjusterMatching.API.csproj", "{B9EF473D-A81E-45BF-989B-D84DB15CE218}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdjusterAssignmentFunc", "AdjusterAssignmentFunc\AdjusterAssignmentFunc.csproj", "{8898A4EE-B945-47A9-A6B7-3080E2BCB285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{B9EF473D-A81E-45BF-989B-D84DB15CE218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9EF473D-A81E-45BF-989B-D84DB15CE218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9EF473D-A81E-45BF-989B-D84DB15CE218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8898A4EE-B945-47A9-A6B7-3080E2BCB285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8898A4EE-B945-47A9-A6B7-3080E2BCB285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8898A4EE-B945-47A9-A6B7-3080E2BCB285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8898A4EE-B945-47A9-A6B7-3080E2BCB285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
