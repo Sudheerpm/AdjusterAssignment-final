@@ -20,7 +20,7 @@ namespace AdjusterAssignmentFunc
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8002/AdjusterMatching");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://20.103.212.223/AdjusterMatching");
 
             string requestBody = String.Empty;
            
@@ -45,7 +45,7 @@ namespace AdjusterAssignmentFunc
                 var assignmentInput = JsonConvert.DeserializeObject<AdjAssignment>(jsonString);
                 assignmentInput.Id = "";
                 json = JsonConvert.SerializeObject(assignmentInput);
-                HttpRequestMessage requestOne = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8000/AdjusterAssignment");
+                HttpRequestMessage requestOne = new HttpRequestMessage(HttpMethod.Post, "http://20.103.211.34/AdjusterAssignment");
 
                 requestOne.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 

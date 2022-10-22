@@ -1,5 +1,5 @@
 Start Docker Images
-run  = docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+run  = docker  -d
 stop = docker-compose -f docker-compose.yml -f docker-compose.override.yml down
 --
 See images
@@ -128,12 +128,19 @@ kubectl get pods
 kubectl get nodes
 
 kodectl describe <podno> ---- trouble shoot.
+kubectl describe pod mongo-deployment-69d9bd6885-j78jw
 
 kubectl exec -it mongo-deployment-55dd9c57c8-xtw6g -- /bin/bash
 
 df
 
+kubectl rollout restart deployment mongo-deployment 
+
 kubectl delete -f .\aks
+
+az aks stop --name myAKSCluster --resource-group myResourceGroup
+
+az aks start --name myAKSCluster --resource-group myResourceGroup
 
 (15) When the deployment completes, you can access the Kubernetes Web UI with a local proxy, using an ssh tunnel.
 
