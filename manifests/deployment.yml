@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: sudheerpmadjusterassignmentfinal 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sudheerpmadjusterassignmentfinal
+  template:
+    metadata:
+      labels:
+        app: sudheerpmadjusterassignmentfinal 
+    spec:
+      containers:
+        - name: sudheerpmadjusterassignmentfinal 
+          image: testacr111.azurecr.io/sudheerpmadjusterassignmentfinal
+          ports:
+          - containerPort: 80
